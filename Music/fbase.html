@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Politics</title>
+  <link rel="stylesheet" href="assets/css/fbase.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+<p style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
+  <img src="assets/images/logo.png" id="logoImage" style="width: 80px; animation: fadeInJelly 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1, jellyEffect 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 3.5s infinite;">
+</p>
+
+<style>
+  @keyframes fadeInJelly {
+    0% {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.3);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes jellyEffect {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+</style>
+
+
+   <!-- Sign In Section -->
+    <div class="auth-section">
+      <h1 style="color:#007bff;">Rock Politics™</h1>
+      <form id="signInForm">
+     <div align=center class="name-group" style="position: relative;">
+  <input 
+    type="text" 
+    id="UserB" 
+    placeholder=" @Username" 
+    required 
+    style="border: 2px solid #d3e6ed; border-radius: 20px; font-size: 12px; height: auto; padding: 4px 6px; outline: none; width: 90px;"
+    oninput="checkUsernameB()"
+  >
+  <span id="usernameIndicatorB" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; opacity: 0; transition: opacity 1s ease, color 0.3s ease;"></span>
+</div><br>
+
+<script>
+  function checkUsernameB() {
+    var username = document.getElementById("UserB").value;
+    var indicator = document.getElementById("usernameIndicatorB");
+
+     // Store the username in localStorage
+  localStorage.setItem("username", username);
+
+    // Check if username is long enough and contains at least one number
+    var hasNumber = /\d/.test(username);
+    
+    // Reset opacity to 0 before changing content
+    indicator.style.opacity = "0";
+    
+    // Use timeout to ensure fading out of previous state before updating content
+    setTimeout(function() {
+      if (username.length < 3) {
+        indicator.innerHTML = ""; 
+        indicator.style.opacity = "0";
+      } else if (username.length >= 6 && hasNumber) {
+        indicator.innerHTML = "✔️"; // Green check when valid
+        indicator.style.color = "green";
+        indicator.style.opacity = "1"; // Fade in with transition
+      } else {
+        indicator.innerHTML = "❌"; // Red cross if no number
+        indicator.style.color = "red";
+        indicator.style.opacity = "1"; // Fade in with transition
+      }
+    }, 300); // Add a delay for smoother transitions between state changes
+  }
+</script>
+
+
+      <div class="form-group">
+          <input type="email" id="signInEmail" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="signInPassword" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn">Login</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Or Separator -->
+    <div style="color:#b1abab;" class="or-separator">OR</div>
+
+    <!-- Register Link -->
+    <div class="register-link">
+      <p>Don't have an account yet?<a href="#" id="registerLink"> Sign up</a></p>
+      <p style="color:#b1abab;font-size:12px;margin-top:2px">For free, with the email of your choice</p>
+    </div>
+
+    <!-- Sign Up Section (Initially Hidden) -->
+    <div class="auth-section" id="signUpSection" style="display: none;">
+    <p style="color: #bac8d7; font-size: 26px; text-align: center; padding: 0px;"><i align=center class="fa-solid fa-user"></i><br>
+    <p style="color: #4f9df1; font-size: 17px; text-align: center; padding-top: 4px; padding-bottom: 14px;">Create an Account</p>
+
+
+
+ <form id="signUpForm">
+ <div align="center" class="name-group" style="position: relative;">
+  <input 
+    type="text" 
+    id="User" 
+    placeholder=" @Username" 
+    required 
+    style="border: 2px solid #007bff; border-radius: 20px; font-size: 12px; height: auto; padding: 4px 6px; outline: none; width: 90px;"
+    oninput="checkUsername()"
+  >
+  <span id="usernameIndicator" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; opacity: 0; transition: opacity 1s ease, color 0.3s ease;"></span>
+</div><br>
+
+<script>
+  function checkUsername() {
+    var username = document.getElementById("User").value;
+    var indicator = document.getElementById("usernameIndicator");
+
+    // Check if username is long enough and contains at least one number
+    var hasNumber = /\d/.test(username);
+    
+    // Reset opacity to 0 before changing content
+    indicator.style.opacity = "0";
+    
+    // Use timeout to ensure fading out of previous state before updating content
+    setTimeout(function() {
+      if (username.length < 3) {
+        indicator.innerHTML = ""; 
+        indicator.style.opacity = "0";
+      } else if (username.length >= 6 && hasNumber) {
+        indicator.innerHTML = "✔️"; // Green check when valid
+        indicator.style.color = "green";
+        indicator.style.opacity = "1"; // Fade in with transition
+      } else {
+        indicator.innerHTML = "❌"; // Red cross if no number
+        indicator.style.color = "red";
+        indicator.style.opacity = "1"; // Fade in with transition
+      }
+    }, 300); // Add a delay for smoother transitions between state changes
+  }
+</script>
+
+
+ 
+
+        <div class="form-group">
+        <input type="email" id="signUpEmail" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="signUpPassword" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn">Register</button>
+        </div>
+        <br>
+        <p style="color:#9b9797; font-size:11px; margin-top:2px">Terms*:<br><br>
+       1. Username should have atleast 6 characters and a number.<br>
+       2. Immediate account activation upon signup.<br>
+       3. No email verification or confirmation emails upon sign-up.<br>
+       4. Your credentials are not accessible to us.<br>
+       5. Safeguard your credentials, recovery options are limited<br>
+       6. Password reset request will send confirmation emails.<br>
+       7. Account deletion is immediate upon request.<br>
+       8. Use the platform responsively.
+       </p><br><br><p align=center style="color:#b1abab;font-size:12px;">Copyrights © RockPolitics™</p>
+  
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase Initialization Script -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAu8wK1d72_FLa6kwvFaAp7gSKRcY2JENE",
+      authDomain: "rock-politics-a5d5e.firebaseapp.com",
+      projectId: "rock-politics-a5d5e",
+      storageBucket: "rock-politics-a5d5e.appspot.com",
+      messagingSenderId: "325558841756",
+      appId: "1:325558841756:web:f97c3b608e8ee40b2dd859",
+      measurementId: "G-50W5XEP4L1"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+
+    // Sign-in function
+    window.signInWithEmailAndPassword = (email, password) => {
+      return signInWithEmailAndPassword(auth, email, password);
+    };
+
+    // Sign-up function
+    window.signUpWithEmailAndPassword = (email, password) => {
+      return createUserWithEmailAndPassword(auth, email, password);
+    };
+  </script>
+
+  <!-- Custom Form Handling Script -->
+  <script src="assets/js/fbase.js"></script>
+  
+
+  <!-- JavaScript to toggle visibility -->
+  <script>
+    document.getElementById('registerLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('signUpSection').style.display = 'block';
+      document.querySelector('.register-link').style.display = 'none';
+    });
+  </script>
+</body>
+</html>

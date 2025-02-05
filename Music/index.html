@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.7">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="assets/css/preloader.css">
+
+  
+
+</head>
+<body style="margin: 0; height: 100vh; background: linear-gradient(to bottom, #ffffff, white 30%, white 70%, #f0f0f0 100%);">
+<div class="loader">
+<div class="finger finger-1">
+		<div class="finger-item">
+			<span></span><i></i>
+		</div>
+	</div>
+	<div class="finger finger-2">
+		<div class="finger-item">
+			<span></span><i></i>
+		</div>
+	</div>
+	<div class="finger finger-3">
+		<div class="finger-item">
+			<span></span><i></i>
+		</div>
+	</div>
+	<div class="finger finger-4">
+		<div class="finger-item">
+			<span></span><i></i>
+		</div>
+	</div>
+	<div class="last-finger">
+		<div class="last-finger-item"><i></i></div>
+	</div>
+</div>
+</body>
+<div style="position: fixed; top: 97%; left: 49%; transform: translateX(-50%); width: 70%; height: 10px; background-color: #ecf0f1; border-radius: 5px; overflow: hidden; z-index: 100001;">
+  <div style="height: 100%; width: 0; background-color: #0099ff; border-radius: 5px; animation: fillProgress 4s ease-in-out forwards;"></div>
+</div>
+<style>
+@keyframes fillProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+</style>
+
+
+
+ <script>
+    // Redirect to home.html after 4 seconds (4000 milliseconds)
+    setTimeout(function() {
+      window.location.href = 'home.html';
+    }, 4000);
+  </script>
+</html>
