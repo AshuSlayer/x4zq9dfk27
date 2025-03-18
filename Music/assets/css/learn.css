@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: colorChange 10s infinite alternate;
+}
+
+@keyframes colorChange {
+    0% { background-color: #3498db; }
+    100% { background-color: #f0f0f0; }
+}
+
+.lesson-container {
+    max-width: 90%;
+    width: 800px;
+    padding: 20px;
+    background-color: #3498db;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInText 1s ease 0.5s forwards;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.viewer {
+    margin-bottom: 20px;
+    border: 4px solid #3498db;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow:hidden;
+    background-color: #fff;
+    opacity: 0;
+    animation: fadeInViewer 1s ease 1s forwards;
+}
+
+@keyframes fadeInViewer {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.viewer embed {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.audio-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    background-color: #3498db;
+    padding: 20px;
+    border-radius: 12px;
+    opacity: 0;
+    animation: fadeInAudio 1s ease 1.5s forwards;
+}
+
+@keyframes fadeInAudio {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+audio {
+    width: 100%;
+    max-width: 600px;
+    outline: none;
+    border: 6px solid #007dd1;
+    border-radius: 20px;
+    background-color: #f4f4f9;
+}
+
+audio::-webkit-media-controls-panel {
+    border-radius: 20px;
+    background-color: #f4f4f9;
+}
