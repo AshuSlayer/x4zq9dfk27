@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guitar Lessons</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/crow.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <script type="module" src="assets/js/init.js"></script>
+    <script type="module" src="assets/js/authcheck.js"></script>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1 style="color:#3498db;">Lessons S1</h1>
+        <div class="table">
+            <div class="row">
+                <div class="cell">Pentatonic Blues</div>
+                <div class="expand">
+                    <div class="arrow"><i class="bi bi-arrow-down-circle" style="font-size: 1.5rem;"></i></div>
+                    <div class="info">
+                        Master rocking guitar basics with simple, effective techniques
+                        <p align=center><a href="video.html?video=1HZ_xomTt_ajWeLQ4PumYWQyFm86b3fw0" class="btn learn-btn">Learn <i class="bi bi-play-fill"></i></a>
+                        <a href="learn.html?lesson=1" class="btn download-btn"><i class="bi bi-music-note-list">&nbsp;Tabs</i></a></p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">The Major Scale</div>
+                <div class="expand">
+                    <div class="arrow"><i class="bi bi-arrow-down-circle" style="font-size: 1.5rem;"></i></div>
+                    <div class="info">
+                        Unlock the foundational sound of music with the versatile and essential major scale.
+                        <p align=center><a href="video.html?video=1DilVs-wPz9a403TFm20t_n6HQEpqXMOo" class="btn learn-btn">Learn <i class="bi bi-play-fill"></i></a>
+                        <a href="learn.html?lesson=2" class="btn download-btn"><i class="bi bi-music-note-list">&nbsp;Tabs</i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">The Minor Scale</div>
+                <div class="expand">
+                    <div class="arrow"><i class="bi bi-arrow-down-circle" style="font-size: 1.5rem;"></i></div>
+                    <div class="info">
+                       Dive into the expressive tones of the minor scale, essential for emotional music
+                        <p align=center><a href="" class="btn learn-btn">Learn <i class="bi bi-play-fill"></i></a>
+                        <a href="learn.html?lesson=3" class="btn download-btn"><i class="bi bi-music-note-list">&nbsp;Tabs</i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">Ascend Excercise 1</div>
+                <div class="expand">
+                    <div class="arrow"><i class="bi bi-arrow-down-circle" style="font-size: 1.5rem;"></i></div>
+                    <div class="info">
+                       Enhance your musical prowess with ascending exercise techniques
+                       <p align=center><a href="" class="btn learn-btn">Learn <i class="bi bi-play-fill"></i></a>
+                        <a href="learn.html?lesson=3" class="btn download-btn"><i class="bi bi-music-note-list">&nbsp;Tabs</i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">Ascend Excercise 2</div>
+                <div class="expand">
+                    <div class="arrow"><i class="bi bi-arrow-down-circle" style="font-size: 1.5rem;"></i></div>
+                    <div class="info">
+                        Refine your musical skills with ascending exercise techniques
+                       <p align=center><a href="" class="btn learn-btn">Learn <i class="bi bi-play-fill"></i></a>
+                        <a href="learn.html?lesson=3" class="btn download-btn"><i class="bi bi-music-note-list">&nbsp;Tabs</i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">Arpeggios</div>
+                <div class="expand">
+                    <div class="arrow"><i class="bi bi-arrow-down-circle" style="font-size: 1.5rem;"></i></div>
+                    <div class="info">
+                        Master the art of arpeggios for fluid and expressive guitar playing.
+                        <p align=center><a href="" class="btn learn-btn">Learn <i class="bi bi-play-fill"></i></a>
+                        <a href="learn.html?lesson=3" class="btn download-btn"><i class="bi bi-music-note-list">&nbsp;Tabs</i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">Chord</div>
+                <div class="expand">
+                    <div class="arrow"><i class="bi bi-arrow-down-circle" style="font-size: 1.5rem;"></i></div>
+                    <div class="info">
+                        Explore essential chord formations for creating harmonic depth and richness in your music
+                        <p align=center><a href="" class="btn learn-btn">Learn <i class="bi bi-play-fill"></i></a>
+                        <a href="learn.html?lesson=3" class="btn download-btn"><i class="bi bi-music-note-list">&nbsp;Tabs</i></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="assets/js/crow.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lessonLinks = document.querySelectorAll('.btn');
+
+            lessonLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const lessonName = this.closest('.row').querySelector('.cell').textContent.trim();
+                    sessionStorage.setItem('lessonName', lessonName);
+                    window.location.href = this.href; // Redirect to learn.html
+                });
+            });
+        });
+</script>
+</body>
+</html>

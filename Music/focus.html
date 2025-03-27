@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Page</title>
+    <script type="module" src="assets/js/init.js"></script>
+    <script type="module" src="assets/js/authcheck.js"></script>
+   
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #007bff; /* Blue background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Intro Animation */
+        .intro {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #007bff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .circle {
+            position: absolute;
+            border: 2px solid white;
+            border-radius: 50%;
+            animation: expand 4s ease-out forwards;
+        }
+
+        .circle:first-child {
+            width: 80px;
+            height: 80px;
+        }
+
+        .circle:last-child {
+            width: 60px;
+            height: 60px;
+        }
+
+        @keyframes expand {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(40);
+            }
+        }
+
+        /* Hide intro after animation */
+        .intro.hidden {
+            display: none;
+        }
+
+        /* Task Container */
+        .task-container {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            animation: fadeIn 1.5s ease-in-out;
+            width: 100%;
+            max-width: 600px; /* Set a maximum width */
+            box-sizing: border-box; /* Ensure padding is included in width */
+            margin-top: 110px; /* Center vertically with more space */
+        }
+
+        /* Task */
+        .task {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #d8ecff; /* Light blue background */
+            padding: 15px;
+            border-radius: 15px;
+            width: 90%; /* Ensure tasks fill container width */
+        }
+
+        .task .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task .checkbox-label input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #007bff; /* Blue checkmark */
+            border-radius: 50%; /* Make checkbox round */
+            appearance: none; /* Remove default styling */
+            border: 2px solid #007bff; /* Blue border */
+            background-color: #fff; /* White background */
+            transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+        }
+
+        .task .checkbox-label input[type="checkbox"]:checked {
+            background-color: #007bff; /* Blue background when checked */
+            border: 2px solid #007bff; /* Match border color */
+            animation: bounce 0.6s; /* Add bounce animation */
+        }
+
+        .task .checkbox-label input[type="checkbox"]:checked::after {
+            content: "✓"; /* Checkmark symbol */
+            display: block;
+            text-align: center;
+            line-height: 24px; /* Match height of checkbox */
+            color: white; /* White checkmark color */
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2); /* Slightly larger */
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .task .task-name {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .task .timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task .timer span {
+            font-size: 18px;
+            color: #000;
+            margin-right: 5px;
+        }
+
+        .task .timer button {
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+            animation: bounce 0.6s; /* Add bounce animation */
+        }
+
+        .task .timer button.start {
+            background-color: #007bff; /* Blue background */
+            color: #fff;
+        }
+
+        .task .timer button.start:hover {
+            background-color: #0056b3; /* Darker blue */
+        }
+
+        .task .timer button.stop {
+            background-color: #ff4d4d; /* Red background */
+            color: #fff;
+        }
+
+        .task .timer button.stop:hover {
+            background-color: #cc0000; /* Darker red */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Progress Bar Container */
+        .progress-container {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            background-color: #007bfe;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+            margin-top: 40px; /* Center vertically with more space */
+            align-items: center;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 12px; /* Sleeker height */
+            background-color: #e0e0e0; /* Light gray background */
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(to right, #007bff, #00d2ff); /* Gradient effect */
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Next Button */
+        .next-button {
+            display: none;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .next-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .circle:first-child {
+                width: 60px;
+                height: 60px;
+            }
+
+            .circle:last-child {
+                width: 40px;
+                height: 40px;
+            }
+
+            .task-container {
+                padding: 10px;
+                width: calc(100% - 20px); /* Adjust width */
+                box-sizing: border-box;
+                margin-top: 110px; /* Adjust top margin */
+            }
+
+            .task .task-name {
+                font-size: 14px;
+            }
+
+            .task .timer span {
+                font-size: 16px;
+            }
+
+            .task .timer button {
+                padding: 3px 7px;
+                font-size: 14px;
+            }
+
+            .progress-container {
+                width: calc(100% - 20px);
+                padding: 10px;
+                margin-top: 20px; /* Adjust top margin */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="intro">
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <div class="task-container">
+        <div class="task">
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span class="task-name">Learn Music Theory</span>
+            </label>
+            <div class="timer">
+                <span id="timer1">00:00</span>
+                <button class="start" onclick="startStopwatch('timer1')">Start</button>
+                <button class="stop" onclick="stopStopwatch('timer1')">Stop</button>
+            </div>
+        </div>
+        <div class="task">
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span class="task-name">Dexterity Exercises</span>
+            </label>
+            <div class="timer">
+                <span id="timer2">00:00</span>
+                <button class="start" onclick="startStopwatch('timer2')">Start</button>
+                <button class="stop" onclick="stopStopwatch('timer2')">Stop</button>
+            </div>
+        </div>
+        <div class="task">
+            <label class="checkbox-label">
+                <input type="checkbox">
+                <span class="task-name">Practice Guitar Songs</span>
+            </label>
+            <div class="timer">
+                <span id="timer3">00:00</span>
+                <button class="start" onclick="startStopwatch('timer3')">Start</button>
+                <button class="stop" onclick="stopStopwatch('timer3')">Stop</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+        <button class="next-button" onclick="nextPage()">Next</button>
+    </div>
+
+    <script>
+        let timers = {
+            timer1: { interval: null, startTime: 0, elapsedTime: 0 },
+            timer2: { interval: null, startTime: 0, elapsedTime: 0 },
+            timer3: { interval: null, startTime: 0, elapsedTime: 0 }
+        };
+
+        function startStopwatch(timerId) {
+            const timer = timers[timerId];
+            if (timer.interval) return; // Prevent multiple intervals
+
+            timer.startTime = Date.now() - timer.elapsedTime;
+            timer.interval = setInterval(() => {
+                timer.elapsedTime = Date.now() - timer.startTime;
+                updateDisplay(timerId);
+                updateProgress();
+                checkTimerCompletion();
+            }, 1000);
+        }
+
+        function stopStopwatch(timerId) {
+            const timer = timers[timerId];
+            clearInterval(timer.interval);
+            timer.interval = null;
+        }
+
+        function updateDisplay(timerId) {
+            const timer = timers[timerId];
+            const elapsedTime = Math.floor(timer.elapsedTime / 1000);
+            const minutes = String(Math.floor(elapsedTime / 60)).padStart(2, '0');
+            const seconds = String(elapsedTime % 60).padStart(2, '0');
+            document.getElementById(timerId).innerText = `${minutes}:${seconds}`;
+        }
+
+        function updateProgress() {
+            const totalTime = 10 * 60 * 500; // 10 minutes in milliseconds
+            const elapsedTimes = Object.values(timers).map(timer => timer.elapsedTime);
+            const maxElapsedTime = Math.max(...elapsedTimes);
+            const progressPercentage = Math.min((maxElapsedTime / totalTime) * 100, 100);
+            document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+            if (progressPercentage >= 100) {
+                document.querySelector('.next-button').style.display = 'block';
+            }
+        }
+
+        function checkTimerCompletion() {
+            for (const timerId in timers) {
+                if (timers[timerId].elapsedTime >= 10 * 60 * 1000) {
+                    document.querySelector('.next-button').style.display = 'block';
+                    break;
+                }
+            }
+        }
+
+        function nextPage() {
+            alert('Next page functionality not implemented yet.');
+        }
+
+        // Intro animation end
+        setTimeout(() => {
+            document.querySelector('.intro').classList.add('hidden');
+            document.querySelector('.task-container').style.display = 'flex';
+            document.querySelector('.progress-container').style.display = 'flex';
+        }, 2000);
+    </script>
+</body>
+</html>

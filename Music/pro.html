@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dynamic Pro Lessons</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/pro.css">
+  <script type="module" src="assets/js/init.js"></script>
+  <script type="module" src="assets/js/authcheck.js"></script>
+</head>
+<body>
+<fieldset class="checkbox-group">
+  <legend class="checkbox-group-legend">Rock Politics+</legend>
+
+  <div class="checkbox">
+    <label class="checkbox-wrapper">
+      <input type="checkbox" class="checkbox-input" onclick="handleCheck(this, 'carousel.html')" />
+      <span class="checkbox-tile">
+        <span class="checkbox-icon"><i class="fa-solid fa-guitar"></i></span>
+        <span class="checkbox-label">Guitar Lessons<br><p style="font-size: 10px; color: #aeaeae; text-align:center;">High Quality lessons<br>Pro-Tabs<br>Audio</p></span>
+      </span>
+    </label>
+  </div>
+
+  <div class="checkbox">
+    <label class="checkbox-wrapper">
+      <input type="checkbox" class="checkbox-input" onclick="handleCheck(this, 'applet.html')" />
+      <span class="checkbox-tile">
+        <span class="checkbox-icon"><i class="fab fa-sketch"></i></span>
+        <span class="checkbox-label">Dashboard<p style="font-size: 10px; color: #aeaeae; text-align:center;">Learning Maximized</p></span>
+      </span>
+    </label>
+  </div>
+
+  <div class="checkbox">
+    <label class="checkbox-wrapper">
+      <input type="checkbox" class="checkbox-input" onclick="handleCheck(this, '')" />
+      <span class="checkbox-tile">
+        <span class="checkbox-icon"><i class="fa-solid fa-user-group"></i></span>
+        <span class="checkbox-label">Private Lessons<p style="font-size: 10px; color: #aeaeae; text-align:center;">One-on-One Lessons</p></span>
+      </span>
+    </label>
+  </div>
+</fieldset>
+
+<script>
+  // Function to handle checkbox behavior
+  function handleCheck(checkbox, url) {
+    // Uncheck other checkboxes to prevent multi-select
+    document.querySelectorAll('.checkbox-input').forEach(cb => {
+      if (cb !== checkbox) cb.checked = false;
+    });
+
+    // Only open the link if checkbox is checked (not unchecked)
+    if (checkbox.checked) {
+      setTimeout(() => {
+        window.location.href = url;
+      }, 1000); // Adjust delay for transition
+    }
+  }
+</script>
+</body>
+</html>

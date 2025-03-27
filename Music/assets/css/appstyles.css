@@ -1,0 +1,270 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    background-size: 300% 300%;
+    animation: gradientBackground 30s ease infinite;
+    -webkit-user-select: none; /* For Safari and Chrome */
+    -moz-user-select: none;    /* For Firefox */
+    -ms-user-select: none;     /* For IE10+ */
+     user-select: none;         /* Standard syntax */
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.control-center {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(5, 80px);
+    gap: 10px;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.control {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+.control:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.control.expanded {
+    position: absolute;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    transform: none;
+    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease;
+}
+
+.control .control-icon,
+.control .control-text {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.control.expanded .control-icon,
+.control.expanded .control-text {
+    display: none;
+}
+
+.control .content {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.control.expanded .content {
+    display: block;
+}
+
+.control.airplane-mode {
+    background-color: #ff5e5e;
+    border: 3px solid #fdf1f1;
+}
+
+.control.airplane-mode:hover {
+    filter: brightness(1.2);
+}
+
+.control.cellular {
+    background-color: #4caf50;
+    border: 3px solid #e1ffd6;
+}
+
+.control.cellular:hover {
+    filter: brightness(1.2);
+}
+
+.control.wifi {
+    background-color: #fd6af8;
+    border: 3px solid #fcfcfc;
+}
+
+.control.wifi:hover {
+    filter: brightness(1.2);
+}
+
+.control.bluetooth {
+    background-color: #947fff;
+    border: 3px solid #ffffff;
+}
+
+.control.bluetooth:hover {
+    filter: brightness(1.2);
+}
+
+.control.music {
+    background-color: #3cacf7;
+    grid-column: span 2;
+    width: calc(160px + 10px);
+    border: 3px solid #defffa;
+}
+
+.control.music:hover {
+    filter: brightness(1.2);
+}
+
+.control.lock {
+    background-color: #000000a6;
+    border: 3px solid #54fbb8;
+}
+
+.control.lock:hover {
+    filter: brightness(1.1);
+}
+
+.control.stopwatch {
+    background-color: #ff8738;
+    border: 3px solid #ffffff;
+}
+
+.control.stopwatch:hover {
+    filter: brightness(1.2);
+}
+
+.control.focus {
+    background-color: #3498db;
+    border: 3px solid #88c7ff;
+}
+
+.control.focus:hover {
+    filter: brightness(1.2);
+}
+
+.control.brightness {
+    background: linear-gradient(
+        to right, 
+        #fafafa63, 
+        #18cdf8e8, 
+        #05b1f1, 
+        #8089b64d, 
+        #fffbfb00
+    );
+    grid-column: span 2;
+    width: calc(250px + 10px);
+    border: 3px solid #ffffff;
+}
+
+.control.brightness:hover {
+    filter: brightness(1.1);
+}
+
+.control.volume {
+    background-color: #f6f6f6;
+    grid-column: span 2;
+    width: calc(160px + 10px);
+    border: 3px solid #ffffff;
+}
+
+.control.volume:hover {
+    filter: brightness(1);
+}
+
+.control.flashlight {
+    background-color: #ffffff;
+    border: 3px solid #2b5a8c;
+}
+
+.control.flashlight:hover {
+    filter: brightness(1.1);
+}
+
+.control.calculator {
+    background-color: #e74c3c;
+    border: 3px solid #c62828;
+}
+
+.control.calculator:hover {
+    filter: brightness(1);
+}
+
+.control.camera {
+    background-color: #2ecc71;
+    border: 3px solid #86f6b4;
+}
+
+.control.camera:hover {
+    filter: brightness(1.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 800px) {
+    .control-center {
+        grid-template-columns: repeat(3, 260px); /* Wider columns */
+        grid-template-rows: repeat(5, 100px); /* Same height for rows */
+        gap: 14px; /* Increased gap between tiles */
+        padding: 60px; /* More padding around the control center */
+    }
+
+    .control {
+        width: 260px; /* Wider tiles */
+        height: 100px; /* Keep the height the same */
+        border-radius: 6px; /* Same border radius */
+    }
+
+    .control.music {
+        grid-column: span 2;
+        width: calc(320px + 212px); /* Wider for music control */
+    }
+
+    .control.brightness {
+        grid-column: span 3;
+        width: calc(480px + 328px); /* Maximum width for brightness control */
+    }
+   
+    .control.brightness.expanded {
+    width: 888px;
+}
+
+    .control.volume {
+        grid-column: span 2;
+        width: calc(320px + 214px); /* Wider for volume control */
+    }
+}
