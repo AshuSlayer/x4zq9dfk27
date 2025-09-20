@@ -1018,18 +1018,18 @@ Events Style
 /* Apply the gradient animation to the special-color item */
 .events .item.special-color {
     background: linear-gradient(135deg, 
-        #FFD700 0%, 
-        #FFD700 10%, 
-        #FFEF96 20%, 
-        #FFA500 30%, 
-        #B8860B 40%, 
-        #FFD700 50%, 
-        #000000 60%, 
-        #18cdf8 70%, 
-        #05b1f1 80%, 
+        #919191 0%, 
+        #b8b8b8 10%, 
+        #a6a6a6 20%, 
+        #b0b0b0 30%, 
+        #ffc943 40%, 
+        #c0bbb2 50%, 
+        #9eabce 60%, 
+        #0871be 70%, 
+        #057bf1 80%, 
         #3261b6 85%, 
-        #323f7b 90%, 
-        #283055 100%
+        #4a90e2 90%, 
+        #4a90e2 100%
     );
     background-size: 400% 400%;
     animation: gradientAnimation 30s ease infinite;
@@ -1626,4 +1626,5 @@ body {
   .fun-facts:before {
     width: 95%;
   }
+
 }
